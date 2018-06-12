@@ -12,12 +12,13 @@ class GildedRose {
     public void updateQuality() {
         Categorizer c = new Categorizer();
         for (int i = 0; i < items.length; i++) {
-            if(items[i].name.substring(3).equals("Sul")) {
+            if(items[i].name.startsWith("Sul")) {
                 ItemInterface itemObj = c.categorize(items[i]);
                 itemObj.updateQuality();
                 items[i] = (Item) itemObj;
                 continue;
-            } else if(items[i].name.substring(3).equals("Age")) {
+            }
+            if(items[i].name.startsWith("Age")) {
                 ItemInterface itemObj = c.categorize(items[i]);
                 itemObj.updateQuality();
                 items[i] = (Item) itemObj;
@@ -74,11 +75,12 @@ class GildedRose {
     private class Categorizer {
 
         public ItemInterface categorize(Item item) {
-            switch (item.name.substring(3)) {
-                case "Sul":
-                    return new Legendary(item.name, item.quality, item.sellIn);
-                default:
-                    return item;
+            if (item.name.startsWith("Sul")) {
+                return new Legendary(item.name, item.sellIn, item.quality);
+            } else if (item.name.startsWith("Age")) {
+                return new Brie(item.name, item.sellIn, item.quality);
+            } else {
+                return item;
             }
         }
     }
