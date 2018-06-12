@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Item {
+public class Item implements ItemInterface {
 
     public String name;
 
@@ -8,11 +8,13 @@ public class Item {
 
     public int quality;
 
-    public Item(String name, int sellIn, int quality) {
+    public Item (String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
     }
+
+    public void updateQuality() {};
 
    @Override
    public String toString() {

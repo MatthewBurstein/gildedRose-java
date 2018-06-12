@@ -69,6 +69,13 @@ public class GildedRoseTest {
     }
 
     @Test
+    public void sulfurasSellIn_IsUnchanged() {
+        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 3, 49) };
+        GildedRose app = buildRose(items);
+        assertEquals(3, app.items[0].sellIn);
+    }
+
+    @Test
     public void backstageQualityWhenOutOfDate_isZero() {
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 5)};
         GildedRose app = buildRose(items);
