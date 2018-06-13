@@ -103,4 +103,17 @@ public class GildedRoseTest {
         assertEquals(26, gr.items[0].quality);
     }
 
+    @Test
+    public void conjuredItemQualityWhenInDate_DecreasesByTwo() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 3, 6) };
+        GildedRose gr = buildRose(items);
+        assertEquals(4, gr.items[0].quality);
+    }
+
+    @Test
+    public void conjuredItemQualityWhenInDate_DecreasesByFour() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", -1, 6) };
+        GildedRose gr = buildRose(items);
+        assertEquals(2, gr.items[0].quality);
+    }
 }
