@@ -11,7 +11,7 @@ class GildedRose {
         Categorizer c = new Categorizer();
         int bound = items.length;
         for (int i = 0; i < bound; i++) {
-            ItemInterface itemObj = c.categorize(items[i]);
+            Item itemObj = c.categorize(items[i]);
             itemObj.updateQuality();
             items[i] = (Item) itemObj;
         }
@@ -19,20 +19,18 @@ class GildedRose {
 
     private class Categorizer {
 
-        public ItemInterface categorize(Item item) {
-            ItemInterface itemObj = null;
+        public Item categorize(Item item) {
             if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                itemObj = new Legendary(item.name, item.sellIn, item.quality);
+                return new Legendary(item.name, item.sellIn, item.quality);
             } else if (item.name.equals("Aged Brie")) {
-                itemObj = new Brie(item.name, item.sellIn, item.quality);
+                return new Brie(item.name, item.sellIn, item.quality);
             } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                itemObj = new Pass(item.name, item.sellIn, item.quality);
+                return new Pass(item.name, item.sellIn, item.quality);
             } else if (item.name.equals("Conjured Mana Cake")) {
-                itemObj = new ConjuredItem(item.name, item.sellIn, item.quality);
+                return new ConjuredItem(item.name, item.sellIn, item.quality);
             } else {
-                itemObj = new GenericItem(item.name, item.sellIn, item.quality);
+                return new GenericItem(item.name, item.sellIn, item.quality);
             }
-            return itemObj;
         }
     }
 }
